@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.Page3"
+             Title="Page3">
+    <Grid RowDefinitions="Auto,*">
+        <HorizontalStackLayout Padding="10" Spacing="20">
+            <!--<RadioButton GroupName="UrlSwitch"
+                         Content="Основной"
+                         IsChecked="{Binding SelectedLabel, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Основной}"
+                         IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBoolConverter}}" />
+
+            <RadioButton GroupName="UrlSwitch"
+                         Content="Видео"
+                         IsChecked="{Binding SelectedLabel, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Видео}"
+                         IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBoolConverter}}" />-->
+        </HorizontalStackLayout>
+
+        <!-- WebView -->
+        <Grid Grid.Row="1">
+            <WebView Source="{Binding CurrentUrl}"
+                     Navigated="WebView_Navigated" />
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               WidthRequest="50" HeightRequest="50"
+                               Color="DodgerBlue" />
+        </Grid>
+    </Grid>
+</ContentPage>

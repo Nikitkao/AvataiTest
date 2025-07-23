@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.Page2"
+             Title="Page2">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Label Text="Имя:" />
+            <Entry Text="{Binding Name}" Placeholder="Введите имя" />
+
+            <Label Text="Возраст:" />
+            <Entry Text="{Binding Age}" Keyboard="Numeric" Placeholder="Введите возраст" />
+
+            <Label Text="Email:" />
+            <Entry Text="{Binding Email}" Placeholder="example@domain.com" Keyboard="Email" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Button Text="Отправить"
+                        Command="{Binding SubmitCommand}"
+                        Padding="16,8" />
+
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   WidthRequest="24"
+                                   HeightRequest="24"
+                                   Color="DodgerBlue"
+                                   VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
