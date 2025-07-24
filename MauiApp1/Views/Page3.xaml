@@ -1,22 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MauiApp1.Converters"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MauiApp1.Views.Page3"
+             x:Name="PageRoot"
              Title="Page3">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IsEqualConverter x:Key="EqualityConverter" />
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid RowDefinitions="Auto,*">
-        <HorizontalStackLayout Padding="10" Spacing="20">
-            <!--<RadioButton GroupName="UrlSwitch"
-                         Content="Основной"
-                         IsChecked="{Binding SelectedLabel, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Основной}"
-                         IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBoolConverter}}" />
+        <VerticalStackLayout 
+            Padding="10" 
+            Spacing="10"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}">
 
-            <RadioButton GroupName="UrlSwitch"
-                         Content="Видео"
-                         IsChecked="{Binding SelectedLabel, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Видео}"
-                         IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBoolConverter}}" />-->
-        </HorizontalStackLayout>
+            <RadioButton
+                Content="Основной"
+                GroupName="OptionsGroup"
+                Value="Основной"
+                IsChecked="{Binding SelectedOption,
+                            Mode=TwoWay,
+                            Converter={StaticResource EqualityConverter},
+                            ConverterParameter='Основной'}" />
 
-        <!-- WebView -->
+            <RadioButton
+                Content="Видео"
+                GroupName="OptionsGroup"
+                Value="Видео"
+                IsChecked="{Binding SelectedOption,
+                            Mode=TwoWay,
+                            Converter={StaticResource EqualityConverter},
+                            ConverterParameter='Видео'}" />
+
+        </VerticalStackLayout>
+
         <Grid Grid.Row="1">
             <WebView Source="{Binding CurrentUrl}"
                      Navigated="WebView_Navigated" />
